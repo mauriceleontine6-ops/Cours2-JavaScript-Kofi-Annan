@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Memo Flash Game🧠</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Righteous&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/style_devoir1.css">
+<link rel="icon" type="image/jpeg" href="../css/image2.jpg">
+</head>
+
+<body>
+    <div id="app">
+
+        <div class="deco deco1"></div>
+        <div class="deco deco2"></div>  
+        <div class="deco deco3"></div> 
+
+        <!-- START -->
+        <section id="s-start" class="screen active">
+            <div class="bg-mesh"></div>
+            <div class="m">
+                <span class="emoji-hero"> 🧠 </span>
+                <h1> <span class="e">Memo</span> <span class="f">Flash</span><br><span class="cyan">Game</span></h1>
+                <div class="game-sub">Teste ta mémoire !</div>
+            </div>
+            <div class="rules-card">
+                <div class="rules"><span class="rule-icon"></span>Consignes :</div>
+                <div class="rule"><span class="rule-icon"> 👀 </span>Choisis un nombre entre <span>1 et 10</span> clignotant pendant 500ms</div>
+                <div class="rule"><span class="rule-icon"> 🎯 </span>Trouve le bon chiffre sur le clavier</div>
+                <div class="rule"><span class="rule-icon"> ⏱️ </span>Tu as <span>60 secondes</span> pour marquer un max de points</div>
+                <div class="rule"><span class="rule-icon"> 🔥 </span>Enchaîne les bons chiffres pour une série plus fun !</div>
+            </div>
+            <div class="m">
+            <button class="btn btn-primary" id="btn-start"> Lancer le jeu !</button>
+            </div>
+        </section>
+
+        <!-- GAME -->
+        <div id="s-game" class="screen">
+            <h1><span class="e"> Bienvenue </span><br><span class="e">Dans</span><br><span class="e">Memo </span><span class="f">Flash </span><span class="cyan"> Game</span></h1>
+            <div class="hud">
+            <div class="hud-pill">
+            <span class="hud-lbl">Score</span>
+            <span class="hud-val score-v" id="score-val">0</span>
+            </div>
+            <div class="hud-pill timer-pill">
+            <span class="hud-lbl">Temps</span>
+            <span class="hud-val" id="timer-val">60</span>
+            <div class="timer-progress"><div class="timer-bar" id="timer-bar"></div></div>
+            </div>
+            <div class="hud-pill">
+            <span class="hud-lbl">Série 🔥</span>
+            <span class="hud-val streak-v" id="streak-val">0</span>
+            </div>
+            </div>
+
+            <div class="num-stage">
+                <div id="num-show" style="display:none"></div>
+                <div id="num-hide" class="num-placeholder"></div>
+            </div>
+
+            <div id="feedback"></div>
+
+            <div class="kp-lbl">Quel était le nombre ?</div>
+            <div class="keypad" id="keypad"></div>
+            <div class="trail" id="score-bar"></div>
+        </div>
+
+        <!-- END -->
+        <div id="s-end" class="screen">
+            <div class="end-header" id="end-emoji">🎉</div>
+            <div class="end-title" id="end-title">Bien joué !</div>
+            <div class="end-msg" id="end-msg">Voilà ton résultat !</div>
+
+            <div class="score-showcase">
+                <div class="score-label">Score final</div>
+                <div class="score-big" id="final-score">0</div>
+                <div class="score-pts">points</div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-box">
+                <div class="stat-icon">✅</div>
+                <div class="stat-num" id="st-ok">0</div>
+                <div class="stat-lbl">Corrects</div>
+                </div>
+                <div class="stat-box">
+                <div class="stat-icon">❌</div>
+                <div class="stat-num" id="st-bad">0</div>
+                <div class="stat-lbl">Ratés</div>
+                </div>
+                <div class="stat-box">
+                <div class="stat-icon">🔥</div>
+                <div class="stat-num" id="st-str">0</div>
+                <div class="stat-lbl">Série max</div>
+                </div>
+            </div>
+
+            <div id="end-trail"></div>
+            <button class="btn btn-restart" id="btn-restart">Rejouer</button>
+        </div>
+
+    </div>
+
+    <script src="../js/script_devoir1.js"></script>
+
+</body>
+</html>
