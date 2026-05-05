@@ -2,10 +2,28 @@
 var TOTAL = 60;
 var score, timeLeft, streak, bestStreak, correctCount, wrongCount, history, current, accepting;
 var tickId = null, phase = 'start';
- 
+
+var music = document.getElementById('bg-music');
+var soundSuccess = document.getElementById('sound-success'); 
+var soundFail = document.getElementById('sound-fail'); 
 var okMessages  = ['Bravo ! 🎉','Super ! ⚡','Parfait ! 🌟','Excellent ! 🔥','Incroyable ! 😎','C\'est ça ! 💪','Trop fort ! 🚀'];
 var badMessages = ['Raté... 😬','Oups ! 😅','Pas cette fois 😮','Presque ! 🤏','Continue ! 💪','Allez ! 😤'];
- 
+
+const muteBtn = document.getElementById('mute-btn');
+let isMuted = false;
+const allSounds = [music, soundSuccess, soundFail];
+muteBtn.onclick = () => {
+    isMuted = !isMuted;
+    allSounds.forEach(sound => {sound.muted = isMuted;});
+    if (isMuted) {
+        muteBtn.textContent = '🔇';
+        muteBtn.classList.add('is-muted');
+    } else {
+        muteBtn.textContent = '🔊';
+        muteBtn.classList.remove('is-muted');
+    }
+};
+
 function pick(arr) { return arr[Math.floor(Math.random()*arr.length)]; }
  
 function show(id) {
@@ -19,6 +37,8 @@ document.getElementById('btn-start').addEventListener('click', beginGame);
 document.getElementById('btn-restart').addEventListener('click', beginGame);
  
 function beginGame() {
+music.play(); // Démarre la musique de fond
+music.volume = 0.5; // Optionnel : règle la musique à 50%
 if (tickId) { clearInterval(tickId); tickId = null; }
 score=0; timeLeft=TOTAL; streak=0; bestStreak=0;
 correctCount=0; wrongCount=0; history=[]; current=0; accepting=false;
@@ -90,12 +110,16 @@ accepting = false;
 var ok = n===current;
 var fb = document.getElementById('feedback');
 if (ok) {
+    soundSuccess.currentTime = 0; // Réinitialise pour pouvoir rejouer vite
+    soundSuccess.play();
     score++; streak++; correctCount++;
     if (streak>bestStreak) bestStreak=streak;
     btn.classList.add('ok');
     fb.innerHTML = pick(okMessages);
     fb.className = 'ok';
 } else {
+    soundFail.currentTime = 0;
+    soundFail.play();
     streak=0; wrongCount++;
     btn.classList.add('bad');
     fb.innerHTML = pick(badMessages);
@@ -123,6 +147,8 @@ setTimeout(function(){
 }
  
 function showEnd() {
+music.pause();
+music.currentTime = 0; // Remet au début pour la prochaine partie
 setText('final-score', score);
 setText('st-ok', correctCount);
 setText('st-bad', wrongCount);
@@ -134,7 +160,7 @@ if (score >= 20)      { emoji='🏆'; title='Légendaire !';   msg='Tu es une ma
 else if (score >= 14) { emoji='🌟'; title='Excellent !';     msg='Vraiment impressionnant !'; }
 else if (score >= 9)  { emoji='💪'; title='Bien joué !';     msg='Tu t\'en sors très bien !'; }
 else if (score >= 5)  { emoji='😊'; title='Pas mal !';       msg='Continue de t\'entraîner !'; }
-else                  { emoji=''; title='Fin du jeu !'; msg='La prochaine fois sera meilleure !'; }
+else                  { emoji='❌'; title='Fin du jeu !'; msg='La prochaine fois sera meilleure !'; }
  
 setText('end-emoji', emoji);
 setText('end-title', title);

@@ -187,7 +187,7 @@ opacity: 0.12;
 #s-game h1 .cyan { color: var(--card); text-shadow: var(--neon); }
 #s-game h1 .f    { color: var(--card); text-shadow: var(--neon1); }
 #s-game h1 .e    { color: var(--card); text-shadow: var(--neon2); }
- 
+.j { color: var(--card); text-shadow: var(--neon1); margin-top: 20px; font-size: clamp(2em, 8vw, 4.5rem);}
 /* ── RULES CARD ── */
 .rules-card {
   background: rgba(0,0,0,0.5);
@@ -221,6 +221,30 @@ opacity: 0.12;
 .rule span { color: rgb(0, 115, 255); }
  
 /* ── BUTTONS ── */
+.mute-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--cyan);
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  margin: 5px;
+  margin-top: 10px;
+}
+.mute-btn:hover {
+  background: var(--cyan);
+  transform: scale(1.1);
+}
+.mute-btn.is-muted {
+  border-color: var(--primary);
+  opacity: 0.6;
+}
 .btn {
   font-family: 'Nunito', sans-serif;
   font-weight: 800;
@@ -456,9 +480,8 @@ opacity: 0.12;
 #end-trail .trail-dot { width: 11px; height: 11px; }
  
 #end-title {
-  font-size: clamp(2rem, 8vw, 4.5rem);
+  font-size: clamp(2rem, 4vw, 2rem);
   color: var(--card);
-  text-shadow: var(--neon1);
   margin-top: 0;
 }
 #end-msg {

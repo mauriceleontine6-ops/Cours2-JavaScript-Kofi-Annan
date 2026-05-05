@@ -3,15 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Memo Flash Game🧠</title>
+<title>Memo Flash Game 🧠</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Righteous&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../css/style_devoir1.css">
 <link rel="icon" type="image/jpeg" href="../css/image2.jpg">
 </head>
  
 <body>
+    <audio id="bg-music" src="background music.mp3" loop></audio>
+    <audio id="sound-success" src="sound success .mp3"></audio>
+    <audio id="sound-fail" src="sound fail.mp3"></audio>
     <div id="app">
- 
         <div class="deco deco1"></div>
         <div class="deco deco2"></div>  
         <div class="deco deco3"></div> 
@@ -41,11 +43,11 @@
             <h1><span class="e"> Bienvenue </span><br><span class="e">Dans</span><br><span class="e">Speed </span><span class="f">Number </span><span class="cyan"> Game</span></h1>
             <div class="hud">
             <div class="hud-pill">
-            <span class="hud-lbl">Score</span>
+            <span class="hud-lbl">Score: </span>
             <span class="hud-val score-v" id="score-val">0</span>
             </div>
             <div class="hud-pill timer-pill">
-            <span class="hud-lbl">Temps</span>
+            <span class="hud-lbl">Temps: </span>
             <span class="hud-val" id="timer-val">60</span>
             <div class="timer-progress"><div class="timer-bar" id="timer-bar"></div></div>
             </div>
@@ -53,6 +55,7 @@
             <span class="hud-lbl">Série 🔥</span>
             <span class="hud-val streak-v" id="streak-val">0</span>
             </div>
+            <button id="mute-btn" class="mute-btn">🔊</button>
             </div>
  
             <div class="num-stage">
@@ -69,6 +72,7 @@
  
         <!-- END -->
         <div id="s-end" class="screen">
+            <h1 class="j">Fin du Jeu</h1>
             <div class="end-header" id="end-emoji">🎉</div>
             <div class="end-title" id="end-title">Bien joué !</div>
             <div class="end-msg" id="end-msg">Voilà ton résultat !</div>
